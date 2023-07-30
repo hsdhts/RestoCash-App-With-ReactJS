@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react'
 import { Row, Col, Container } from 'react-bootstrap';
 import {Hasil, ListCategories, NavbarComponents } from './components/Index';
+// import React, { Component } from 'react'
+import { API_URL } from './utils/constants';
+import axios from 'axios';
 
+export default class App extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       menus:[],
+    }
+  }
+  
+  componentDidMount() {
+    
+  }
 
-function App() {
-  return (
-    <div className="App">
+  render() {
+    return (
+      <div className="App">
        <NavbarComponents/>
       <div className='mt-4'>
       <Container fluid>
@@ -20,7 +35,8 @@ function App() {
        </Container>
       </div>
     </div>
-  );
+    )
+  }
 }
 
-export default App;
+
