@@ -1,5 +1,5 @@
-import Result from "./Result";
+import Hasil from "./Hasil";
 import ListCategories from "./ListCategories";
 import NavbarComponents from "./NavbarComponents";
 
-export {Result, ListCategories, NavbarComponents}
+export {Hasil, ListCategories, NavbarComponents}

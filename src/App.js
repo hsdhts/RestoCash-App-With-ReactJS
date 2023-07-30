@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Container } from 'react-bootstrap';
-import {Result, ListCategories, NavbarComponents } from './components/Index';
+import {Hasil, ListCategories, NavbarComponents } from './components/Index';
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         <h4><strong>Daftar Product</strong></h4>
         <hr/>
         </Col>
-        <Result/>
+        <Hasil/>
        </Row>
        </Container>
       </div>

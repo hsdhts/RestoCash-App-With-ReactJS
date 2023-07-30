@@ -1,7 +1,7 @@
 import React from 'react'
 import {Col} from 'react-bootstrap'
 
-const Result = () => {
+const Hasil = () => {
   return (
     <Col md={3} mt={2}>
         <h4>
@@ -12,4 +12,4 @@ const Result = () => {
   )
 }
 
-export default Result
+export default Hasil
