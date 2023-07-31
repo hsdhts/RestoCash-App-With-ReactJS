@@ -1,22 +1,21 @@
-import React, { Component } from 'react'
-import { Row, Col, Container } from 'react-bootstrap';
-import {Hasil, ListCategories, Menus, NavbarComponents } from './components/Index';
-// import React, { Component } from 'react'
-import { API_URL } from './utils/constants';
-import axios from 'axios';
-import swal from 'sweetalert'
+import React, { Component } from "react";
+import { Row, Col, Container } from "react-bootstrap";
+import { Hasil, ListCategories, Menus } from "../components/Index";
+import { API_URL } from "../utils/constants";
+import axios from "axios";
+import swal from "sweetalert";
 
-export default class App extends Component {
+export default class Home extends Component {
   constructor(props) {
     super(props);
-  
+
     this.state = {
       menus: [],
-      categoriYangDipilih: 'Makanan',
-      charts : []
+      categoriYangDipilih: "Makanan",
+      keranjangs: [],
     };
   }
-  
+
   componentDidMount() {
     axios
       .get(API_URL + "products?category.nama=" + this.state.categoriYangDipilih)
@@ -123,38 +122,36 @@ export default class App extends Component {
       });
   };
 
-  
-  
   render() {
-    const { menus, categoriYangDipilih, keranjangs} = this.state;
-    // console.log(this.state.menus)
+    const { menus, categoriYangDipilih, keranjangs } = this.state;
     return (
-      <div className="App">
-       <NavbarComponents/>
-      <div className='mt-4'>
-      <Container fluid>
-       <Row>
-        <ListCategories changeCategory= {this.changeCategory} categoriYangDipilih={categoriYangDipilih}/>
-        <Col>
-        <h4><strong>Daftar Product</strong></h4>
-        <hr/>
-        <Row>
-        {menus && menus.map((menu) => (
-       <Menus
-      key={menu.id}
-       menu={menu}
-       masukKeranjang= {this.masukKeranjang}
-       />
-       ))}
-        </Row>
-        </Col>
-        <Hasil keranjangs = {keranjangs}/>
-       </Row>
-       </Container>
-      </div>
-    </div>
-    )
+        <div className="mt-3">
+          <Container fluid>
+            <Row>
+              <ListCategories
+                changeCategory={this.changeCategory}
+                categoriYangDipilih={categoriYangDipilih}
+              />
+              <Col className="mt-3">
+                <h4>
+                  <strong>Daftar Produk</strong>
+                </h4>
+                <hr />
+                <Row className="overflow-auto menu">
+                  {menus &&
+                    menus.map((menu) => (
+                      <Menus
+                        key={menu.id}
+                        menu={menu}
+                        masukKeranjang={this.masukKeranjang}
+                      />
+                    ))}
+                </Row>
+              </Col>
+              <Hasil keranjangs={keranjangs} {...this.props}/>
+            </Row>
+          </Container>
+        </div>
+    );
   }
 }
-
-
