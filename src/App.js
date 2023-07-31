@@ -1,34 +1,34 @@
 import React, { Component } from 'react'
 import { Row, Col, Container } from 'react-bootstrap';
-import {Hasil, ListCategories, NavbarComponents } from './components/Index';
+import {Hasil, ListCategories, Menus, NavbarComponents } from './components/Index';
 // import React, { Component } from 'react'
 import { API_URL } from './utils/constants';
 import axios from 'axios';
 
 export default class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   
     this.state = {
-       menus:[],
-    }
+      menus: [],
+    };
   }
   
   componentDidMount() {
-    axios.
-    get(API_URL + "products")
-    .then(res => {
-      console.log("Response : ", res)
-      const menus = res.data;
-      this.setState({ menus });
-    })
-    .catch(error => {
-      console.log("Terjadi error: ", error)
-    })
+    axios
+      .get(API_URL + "products")
+      .then(res => {
+        // console.log("Response : ", res)
+        const menus = res.data;
+        this.setState({ menus });
+      })
+      .catch(error => {
+        console.log("Terjadi error: ", error);
+      });
   }
-
+  
   render() {
-    const {menus } = this.state
+    const { menus } = this.state;
     // console.log(this.state.menus)
     return (
       <div className="App">
@@ -41,9 +41,12 @@ export default class App extends Component {
         <h4><strong>Daftar Product</strong></h4>
         <hr/>
         <Row>
-          {menus && menus.map ((menu)=> {
-            <h2>{menu.nama}</h2>
-          })} 
+        {menus && menus.map((menu) => (
+       <Menus
+      key={menu.id}
+       menu={menu}
+       />
+       ))}
         </Row>
         </Col>
         <Hasil/>
