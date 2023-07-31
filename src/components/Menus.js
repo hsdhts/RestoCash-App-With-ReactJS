@@ -15,7 +15,6 @@ const Menus = ({menu}) => {
         <Card.Text>
           Rp. { numberWithCommas(menu.harga)}
         </Card.Text>
-        {/* <Button variant="primary">Go somewhere</Button> */}
       </Card.Body>
     </Card>
     </Col>

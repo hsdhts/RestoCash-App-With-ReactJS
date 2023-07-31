@@ -11,12 +11,13 @@ export default class App extends Component {
   
     this.state = {
       menus: [],
+      categoriYangDipilih: 'Makanan'
     };
   }
   
   componentDidMount() {
     axios
-      .get(API_URL + "products")
+      .get(API_URL + "products?category.nama=" + this.state.categoriYangDipilih)
       .then(res => {
         // console.log("Response : ", res)
         const menus = res.data;
@@ -26,9 +27,28 @@ export default class App extends Component {
         console.log("Terjadi error: ", error);
       });
   }
+
+  changeCategory = (value) => {
+    this.setState({
+      categoriYangDipilih: value,
+      menus: []
+    })
+
+    axios
+    .get(API_URL + "products?category.nama=" + value)
+    .then(res => {
+      const menus = res.data;
+      this.setState({ menus });
+    })
+    .catch(error => {
+      console.log("Terjadi error: ", error);
+    });
+
+
+  }
   
   render() {
-    const { menus } = this.state;
+    const { menus, categoriYangDipilih} = this.state;
     // console.log(this.state.menus)
     return (
       <div className="App">
@@ -36,7 +56,7 @@ export default class App extends Component {
       <div className='mt-4'>
       <Container fluid>
        <Row>
-        <ListCategories/>
+        <ListCategories changeCategory= {this.changeCategory} categoriYangDipilih={categoriYangDipilih}/>
         <Col>
         <h4><strong>Daftar Product</strong></h4>
         <hr/>
